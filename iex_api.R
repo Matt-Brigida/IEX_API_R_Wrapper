@@ -21,3 +21,17 @@ ven <- function(ticker){
     tmp$Ticker <- ticker
     return(tmp)
 }
+
+## one miunte prices over day for given ticker
+one_day <- function(ticker){
+    tmp <- GET(paste0(base_url, version, "stock/", ticker,"/chart/1d"))
+    tmp <- content(tmp, "parsed")
+    tmp <- do.call(rbind, tmp)
+    tmp <- data.frame(tmp)
+    tmp$Ticker <- ticker
+    return(tmp)
+}
+
+symbol_list(){
+    
+}
