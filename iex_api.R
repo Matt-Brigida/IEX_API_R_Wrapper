@@ -10,3 +10,14 @@ version <- "1.0/"
 
 test <- GET(paste0(base_url, version, "stock/aapl/company"))
 str(content(test, "parsed"))
+
+
+## volume by venue for given ticker
+ven <- function(ticker){
+    tmp <- GET(paste0(base_url, version, "stock/", ticker,"/volume-by-venue"))
+    tmp <- content(tmp, "parsed")
+    tmp <- do.call(rbind, tmp)
+    tmp <- data.frame(tmp)
+    tmp$Ticker <- ticker
+    return(tmp)
+}
