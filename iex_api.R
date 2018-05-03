@@ -32,6 +32,10 @@ one_day <- function(ticker){
     return(tmp)
 }
 
-symbol_list(){
-    
+symbol_list <- function(){
+    tmp <- GET(paste0(base_url, version, "/ref-data/symbols"))
+    tmp <- content(tmp, "parsed")
+    tmp <- do.call(rbind, tmp)
+    tmp <- data.frame(tmp)
+    return(tmp)
 }
