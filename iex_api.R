@@ -41,8 +41,9 @@ fins <- function(ticker){
     tmp <- content(tmp, "parsed")
     tmp <- unlist(tmp)
     names <- gsub("financials.", "", names(tmp))
-    iden <- c("", rep(c("", rep("Income Statement",8), rep("Balance Sheet", 7), rep("Cash Flow", 2)), 4))
-    tmp <- data.frame(tmp, rownames = names, fin_statement = iden)
+    ## iden <- c("", rep(c("", rep("Income Statement",8), rep("Balance Sheet", 7), rep("Cash Flow", 2)), 4))
+    ## tmp <- data.frame(tmp, rownames = names, fin_statement = iden)
+    tmp <- data.frame(tmp, rownames = names)
     names(tmp) <- c("data", "field", "Fin_Statement")
     return(tmp)
 }
