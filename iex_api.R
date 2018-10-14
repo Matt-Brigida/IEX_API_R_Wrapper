@@ -37,6 +37,23 @@ chart <- function(ticker){
 ## add collections function------
 
 
+## delayedquote
+dquote <- function(ticker){
+    tmpdata <- GET(paste0(base_url, version, "stock/", ticker,"/delayed-quote"))
+    .datahandler(tmpdata, ticker)
+}
+
+## div5---pulls last 5 years of dividends which is the most history allowed
+div5 <- function(ticker){
+    tmpdata <- GET(paste0(base_url, version, "stock/", ticker,"/dividends/5y"))
+    .datahandler(tmpdata, ticker)
+}
+
+## earnings---need to reformat output
+earnings <- function(ticker){
+    tmpdata <- GET(paste0(base_url, version, "stock/", ticker,"/earnings"))
+    .datahandler(tmpdata, ticker)
+}
 
 ## one minute prices over day for given ticker
 one_day <- function(ticker){
