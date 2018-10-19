@@ -28,7 +28,7 @@ book <- function(ticker){
     .datahandler(tmpdata, ticker)
 }
 
-## chart---right now just pulls default 1 month.  Add additional history lengths later
+## chart---right now just pulls default 1 month.  TODO: Add additional history lengths later
 chart <- function(ticker){
     tmpdata <- GET(paste0(base_url, version, "stock/", ticker,"/chart"))
     .datahandler(tmpdata, ticker)
@@ -49,11 +49,36 @@ div5 <- function(ticker){
     .datahandler(tmpdata, ticker)
 }
 
-## earnings---need to reformat output
+## earnings---TODO: need to reformat output
 earnings <- function(ticker){
     tmpdata <- GET(paste0(base_url, version, "stock/", ticker,"/earnings"))
     .datahandler(tmpdata, ticker)
 }
+
+## earnings today---TODO: data returned needs to be reformatted
+earnings_today <-  function(){
+    tmpdata <- GET(paste0(base_url, version, "stock/market/today-earnings"))
+    .datahandler(tmpdata)
+}
+
+## effective spread
+effective_spread <- function(ticker){
+    tmpdata <- GET(paste0(base_url, version, "stock/", ticker,"/effective-spread"))
+    .datahandler(tmpdata, ticker)
+}
+
+## upcoming IPOs---TODO: need to fix how data is handled
+upcoming_ipos <-  function(){
+    tmpdata <- GET(paste0(base_url, version, "stock/market/upcoming-ipos"))
+    .datahandler(tmpdata)
+}
+
+## today IPOs---TODO: need to fix how data is handled
+today_ipos <-  function(){
+    tmpdata <- GET(paste0(base_url, version, "stock/market/today-ipos"))
+    .datahandler(tmpdata)
+}
+
 
 ## one minute prices over day for given ticker
 one_day <- function(ticker){
@@ -76,7 +101,7 @@ crypto <- function(){
     .datahandler(tmpdata)
 }
 
-## finacials for given ticker  --- work on this function, data returned is in a different structure. 
+## finacials for given ticker  --- work on this function, data returned is in a different structure.
 fins <- function(ticker){
     tmp <- GET(paste0(base_url, version, "stock/", ticker,"/financials"))
     tmp <- content(tmp, "parsed")
