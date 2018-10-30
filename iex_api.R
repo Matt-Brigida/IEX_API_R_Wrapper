@@ -86,6 +86,11 @@ one_day <- function(ticker){
     .datahandler(tmpdata, ticker)
 }
 
+## peers
+peers <- function(ticker){
+    tmpdata <- GET(paste0(base_url, version, "stock/", ticker,"/peers"))
+    .datahandler(tmpdata, ticker)
+}
 
 ### function which are somewhat different from standard -----------
 
@@ -117,3 +122,5 @@ company <- function(ticker){
     tmpdata <- GET(paste0(base_url, version, "stock/", ticker,"/company"))
     .datahandler(tmpdata, ticker)
 }
+
+
