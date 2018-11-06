@@ -92,6 +92,12 @@ peers <- function(ticker){
     .datahandler(tmpdata, ticker)
 }
 
+## previous
+previous <- function(ticker){
+    tmpdata <- GET(paste0(base_url, version, "stock/", ticker,"/previous"))
+    .datahandler(tmpdata, ticker)
+}
+
 ### function which are somewhat different from standard -----------
 
 ## get all symbols (names and tickers), may change daily
