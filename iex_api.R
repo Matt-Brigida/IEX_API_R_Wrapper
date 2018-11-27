@@ -11,8 +11,10 @@ version <- "1.0/"
     tmpdata <- do.call(rbind, tmpdata)
     tmpdata <- data.frame(tmpdata)
     if(ticker != ""){
-    tmpdata$Ticker <- ticker
+    tmpdata$Ticker <- toupper(ticker)
     }
+    ## adding the next line will cause dates to be converted to numeric (they were being brought in as factor)
+    tmpdata <- tmpdata[-(rownames(tmpdata) == "symbol"),]
     return(tmpdata)
 }
 
