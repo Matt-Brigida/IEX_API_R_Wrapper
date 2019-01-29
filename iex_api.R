@@ -103,10 +103,19 @@ previous <- function(ticker){
 ### function which are somewhat different from standard -----------
 
 ## get all symbols (names and tickers), may change daily
+## get all symbols (names and tickers), may change daily
 symbol_list <- function(){
-    tmpdata <- GET(paste0(base_url, version, "/ref-data/symbols"))
-    .datahandler(tmpdata)
+    tmp <- GET(paste0(base_url, version, "/ref-data/symbols"))
+    tmp <- content(tmp, "parsed")
+    tmp <- do.call(rbind, tmp)
+    tmp <- data.frame(tmp)
+    return(tmp)
 }
+
+## symbol_list <- function(){
+##     tmpdata <- GET(paste0(base_url, version, "/ref-data/symbols"))
+##     .datahandler(tmpdata)
+## }
 
 ## crypto
 crypto <- function(){
